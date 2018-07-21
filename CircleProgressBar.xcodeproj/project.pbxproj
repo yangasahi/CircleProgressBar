@@ -10,6 +10,8 @@
 		99EBF71D21009AB700379645 /* CircleProgressBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EBF71321009AB700379645 /* CircleProgressBar.framework */; };
 		99EBF72221009AB700379645 /* CircleProgressBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBF72121009AB700379645 /* CircleProgressBarTests.swift */; };
 		99EBF72421009AB700379645 /* CircleProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EBF71621009AB700379645 /* CircleProgressBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		99EBF77B2102FD2B00379645 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBF77A2102FD2B00379645 /* CircleProgressBar.swift */; };
+		99EBF77D2102FD7D00379645 /* CircleProgressBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBF77C2102FD7D00379645 /* CircleProgressBarItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		99EBF71C21009AB700379645 /* CircleProgressBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CircleProgressBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99EBF72121009AB700379645 /* CircleProgressBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBarTests.swift; sourceTree = "<group>"; };
 		99EBF72321009AB700379645 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99EBF77A2102FD2B00379645 /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
+		99EBF77C2102FD7D00379645 /* CircleProgressBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBarItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 			children = (
 				99EBF71621009AB700379645 /* CircleProgressBar.h */,
 				99EBF71721009AB700379645 /* Info.plist */,
+				99EBF77A2102FD2B00379645 /* CircleProgressBar.swift */,
+				99EBF77C2102FD7D00379645 /* CircleProgressBarItem.swift */,
 			);
 			path = CircleProgressBar;
 			sourceTree = "<group>";
@@ -148,6 +154,7 @@
 				TargetAttributes = {
 					99EBF71221009AB700379645 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					99EBF71B21009AB700379645 = {
 						CreatedOnToolsVersion = 10.0;
@@ -194,6 +201,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99EBF77B2102FD2B00379645 /* CircleProgressBar.swift in Sources */,
+				99EBF77D2102FD7D00379645 /* CircleProgressBarItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +348,7 @@
 		99EBF72821009AB700379645 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -357,6 +367,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.deliease.CircleProgressBar;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,6 +376,7 @@
 		99EBF72921009AB700379645 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -391,6 +403,7 @@
 		99EBF72B21009AB700379645 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 82W9HNF8T5;
 				INFOPLIST_FILE = CircleProgressBarTests/Info.plist;
@@ -409,6 +422,7 @@
 		99EBF72C21009AB700379645 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 82W9HNF8T5;
 				INFOPLIST_FILE = CircleProgressBarTests/Info.plist;
