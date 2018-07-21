@@ -1,1 +1,1 @@
-# CircleProgressBar
+[![Build Status](https://travis-ci.org/yangasahi/CircleProgressBar.svg?branch=master)](https://travis-ci.org/yangasahi/CircleProgressBar)
