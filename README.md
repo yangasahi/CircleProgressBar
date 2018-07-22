@@ -10,6 +10,10 @@ CircleProgressBar is a library for showing diffrent colors progress to a circle 
 
 # Usage
 
+## CocoaPods Install
+
+## Carthage Install
+
 # License
 
 CircleProgressBar is released under the MIT license. See LICENSE for details.
