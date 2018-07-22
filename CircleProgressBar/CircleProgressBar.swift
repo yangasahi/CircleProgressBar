@@ -52,7 +52,7 @@ public class CircleProgressBar: UIView {
         caBasicAnimation.duration = getAnimationTime(from: circleProgressBarItems[indexOfArray].value)
         caBasicAnimation.fromValue = startValue
         caBasicAnimation.toValue = circleProgressBarItems[indexOfArray].value + startValue
-        caBasicAnimation.timingFunction = CAMediaTimingFunction(name: .linear)
+        caBasicAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         caBasicAnimation.delegate = self
         shapeLayer.add(caBasicAnimation, forKey: "strokeEnd")
         
