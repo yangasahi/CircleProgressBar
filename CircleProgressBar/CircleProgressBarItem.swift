@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct CircleProgressBarItem {
+public struct CircleProgressBarItem: Comparable {
+    
     var value: CGFloat
     var strokeWidth: CGFloat
     var strokeColor: UIColor
@@ -17,5 +18,9 @@ public struct CircleProgressBarItem {
         self.value = value
         self.strokeWidth = strokeWidth
         self.strokeColor = strokeColor
+    }
+    
+    public static func < (lhs: CircleProgressBarItem, rhs: CircleProgressBarItem) -> Bool {
+        return lhs.strokeWidth < rhs.strokeWidth
     }
 }

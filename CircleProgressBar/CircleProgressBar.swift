@@ -8,16 +8,22 @@
 
 import UIKit
 
+public enum SortOrder {
+    case ascending, descending, none
+}
+
 public class CircleProgressBar: UIView {
     
     public var animationTimeDuring: CGFloat = 1.0
     public var startAngle: CGFloat = 270
     public var isClockwise = true
+    public var sortOrder: SortOrder = .none
     
     private var circleProgressBarItems = [CircleProgressBarItem]()
     private var isAnimating = false
     
     private var startValue: CGFloat = 0
+    private var widestStroke: CGFloat = 0
     private var indexOfArray = 0
     
     public func show() {
@@ -27,8 +33,16 @@ public class CircleProgressBar: UIView {
         
         isAnimating = true
         
+        switch sortOrder {
+        case .ascending:
+            circleProgressBarItems.sort(by: <)
+        case .descending:
+            circleProgressBarItems.sort(by: >)
+        default:
+            break
+        }
+        setWidestStroke()
         removeAllSublayers()
-        addMaskLayer()
         configCircleProgressBar()
     }
     
@@ -44,9 +58,17 @@ public class CircleProgressBar: UIView {
         shapeLayer.strokeColor = circleProgressBarItems[indexOfArray].strokeColor.cgColor
         
         let center = CGPoint(x: shapeLayer.frame.width / 2, y: shapeLayer.frame.height / 2)
-        let radius = min(center.x, center.y)
         
-        let uiBezierPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle / 180.0 * CGFloat.pi, endAngle: (startAngle + 360) / 180.0 * CGFloat.pi, clockwise: isClockwise)
+        var radius = min(center.x, center.y)
+        if circleProgressBarItems[indexOfArray].strokeWidth < widestStroke {
+            radius = radius - widestStroke / 2 + circleProgressBarItems[indexOfArray].strokeWidth / 2
+        }
+        
+        let uiBezierPath = UIBezierPath(arcCenter: center,
+                                            radius: radius,
+                                            startAngle: startAngle / 180.0 * CGFloat.pi,
+                                            endAngle: (startAngle + 360) / 180.0 * CGFloat.pi,
+                                            clockwise: isClockwise)
         
         let caBasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         caBasicAnimation.duration = getAnimationTime(from: circleProgressBarItems[indexOfArray].value)
@@ -79,29 +101,12 @@ public class CircleProgressBar: UIView {
         }
     }
     
-    private func addMaskLayer() {
-        var smallerStrokeWidth = circleProgressBarItems[0].strokeWidth
-        
-        for circleProgressBar in circleProgressBarItems {
-            if circleProgressBar.strokeWidth < smallerStrokeWidth {
-                smallerStrokeWidth = circleProgressBar.strokeWidth
+    private func setWidestStroke() {
+        for circleProgressBarItem in circleProgressBarItems {
+            if circleProgressBarItem.strokeWidth > widestStroke {
+                widestStroke = circleProgressBarItem.strokeWidth
             }
         }
-        
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height)
-        shapeLayer.fillColor = UIColor.white.cgColor
-        shapeLayer.lineWidth = smallerStrokeWidth
-        let center = CGPoint(x: shapeLayer.frame.width / 2, y: shapeLayer.frame.height / 2)
-        let radius = min(center.x, center.y)
-        
-        let uiBezierPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle / 180.0 * CGFloat.pi, endAngle: (startAngle + 360) / 180.0 * CGFloat.pi, clockwise: isClockwise)
-        
-        shapeLayer.path = uiBezierPath.cgPath
-        shapeLayer.strokeStart = 0
-        shapeLayer.strokeEnd = 1
-        
-        self.layer.addSublayer(shapeLayer)
     }
 }
 
