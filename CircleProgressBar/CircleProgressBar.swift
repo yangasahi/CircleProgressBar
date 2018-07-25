@@ -21,10 +21,12 @@ public class CircleProgressBar: UIView {
     
     private var circleProgressBarItems = [CircleProgressBarItem]()
     private var isAnimating = false
-    
     private var startValue: CGFloat = 0
-    private var widestStroke: CGFloat = 0
     private var indexOfArray = 0
+    
+    private var widestStroke: CGFloat? {
+        return circleProgressBarItems.max()?.strokeWidth
+    }
     
     public func show() {
         guard circleProgressBarItems.count > 0, !isAnimating else {
@@ -41,7 +43,6 @@ public class CircleProgressBar: UIView {
         default:
             break
         }
-        setWidestStroke()
         removeAllSublayers()
         configCircleProgressBar()
     }
@@ -60,7 +61,7 @@ public class CircleProgressBar: UIView {
         let center = CGPoint(x: shapeLayer.frame.width / 2, y: shapeLayer.frame.height / 2)
         
         var radius = min(center.x, center.y)
-        if circleProgressBarItems[indexOfArray].strokeWidth < widestStroke {
+        if let widestStroke = widestStroke, circleProgressBarItems[indexOfArray].strokeWidth < widestStroke {
             radius = radius - widestStroke / 2 + circleProgressBarItems[indexOfArray].strokeWidth / 2
         }
         
@@ -98,14 +99,6 @@ public class CircleProgressBar: UIView {
     private func removeAllSublayers() {
         self.layer.sublayers?.forEach {
             $0.removeFromSuperlayer()
-        }
-    }
-    
-    private func setWidestStroke() {
-        for circleProgressBarItem in circleProgressBarItems {
-            if circleProgressBarItem.strokeWidth > widestStroke {
-                widestStroke = circleProgressBarItem.strokeWidth
-            }
         }
     }
 }
